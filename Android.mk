@@ -4,4 +4,6 @@ ifeq ($(TARGET_DEVICE),k15tb_a)
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
+include $(CLEAR_VARS)
+
 endif

@@ -1,6 +1,6 @@
-LOCAL_PATH := device/vernee/k15tb_a
 
-DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
+# Overlays
+DEVICE_PACKAGE_OVERLAYS += $(DEVICE_PATH)/overlay
 
 # Enable Minikin text layout engine (will be the default soon)
 USE_MINIKIN := true
@@ -9,7 +9,7 @@ USE_MINIKIN := true
 MALLOC_SVELTE := true
 
 # Screen density
-PRODUCT_AAPT_CONFIG := normal
+PRODUCT_AAPT_CONFIG := normal xhdpi xxhdpi
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
 # Recovery allowed devices
@@ -17,40 +17,36 @@ TARGET_OTA_ASSERT_DEVICE := lite,apollo_lite,k15tb_a
 
 # Audio
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/audio/audio_device.xml:system/etc/audio_device.xml \
-    $(LOCAL_PATH)/configs/audio/audio_policy_configuration.xml:system/etc/audio_policy_configuration.xml \
-    $(LOCAL_PATH)/configs/audio/a2dp_audio_policy_configuration.xml:/system/etc/a2dp_audio_policy_configuration.xml
+    $(DEVICE_PATH)/configs/audio/audio_policy_configuration.xml:system/etc/audio_policy_configuration.xml \
+    $(DEVICE_PATH)/configs/audio/a2dp_audio_policy_configuration.xml:/system/etc/a2dp_audio_policy_configuration.xml
 
 # Media
 PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
-	$(LOCAL_PATH)/configs/media_codecs_mediatek_video.xml:system/etc/media_codecs_mediatek_video.xml \
-	$(LOCAL_PATH)/configs/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
-	$(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
+	$(DEVICE_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
+	$(DEVICE_PATH)/configs/media_codecs_mediatek_video.xml:system/etc/media_codecs_mediatek_video.xml \
+	$(DEVICE_PATH)/configs/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
+	$(DEVICE_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
 
 # Ramdisk
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/factory_init.connectivity.rc:root/factory_init.connectivity.rc \
-    $(LOCAL_PATH)/rootdir/factory_init.project.rc:root/factory_init.project.rc \
-    $(LOCAL_PATH)/rootdir/factory_init.rc:root/factory_init.rc \
-    $(LOCAL_PATH)/rootdir/fstab.mt6797:root/fstab.mt6797 \
-    $(LOCAL_PATH)/rootdir/init.connectivity.rc:root/init.connectivity.rc \
-    $(LOCAL_PATH)/rootdir/init.modem.rc:root/init.modem.rc \
-    $(LOCAL_PATH)/rootdir/init.mt6797.rc:root/init.mt6797.rc \
-    $(LOCAL_PATH)/rootdir/init.mt6797.usb.rc:root/init.mt6797.usb.rc \
-    $(LOCAL_PATH)/rootdir/init.sensor.rc:root/init.sensor.rc \
-    $(LOCAL_PATH)/rootdir/meta_init.connectivity.rc:root/meta_init.connectivity.rc \
-    $(LOCAL_PATH)/rootdir/meta_init.modem.rc:root/meta_init.modem.rc \
-    $(LOCAL_PATH)/rootdir/meta_init.project.rc:root/meta_init.project.rc \
-    $(LOCAL_PATH)/rootdir/meta_init.rc:root/meta_init.rc \
-    $(LOCAL_PATH)/rootdir/ueventd.mt6797.rc:root/ueventd.mt6797.rc
+    $(DEVICE_PATH)/rootdir/factory_init.connectivity.rc:root/factory_init.connectivity.rc \
+    $(DEVICE_PATH)/rootdir/factory_init.project.rc:root/factory_init.project.rc \
+    $(DEVICE_PATH)/rootdir/factory_init.rc:root/factory_init.rc \
+    $(DEVICE_PATH)/rootdir/fstab.mt6797:root/fstab.mt6797 \
+    $(DEVICE_PATH)/rootdir/init.connectivity.rc:root/init.connectivity.rc \
+    $(DEVICE_PATH)/rootdir/init.modem.rc:root/init.modem.rc \
+    $(DEVICE_PATH)/rootdir/init.mt6797.rc:root/init.mt6797.rc \
+    $(DEVICE_PATH)/rootdir/init.mt6797.usb.rc:root/init.mt6797.usb.rc \
+    $(DEVICE_PATH)/rootdir/init.sensor.rc:root/init.sensor.rc \
+    $(DEVICE_PATH)/rootdir/meta_init.connectivity.rc:root/meta_init.connectivity.rc \
+    $(DEVICE_PATH)/rootdir/meta_init.modem.rc:root/meta_init.modem.rc \
+    $(DEVICE_PATH)/rootdir/meta_init.project.rc:root/meta_init.project.rc \
+    $(DEVICE_PATH)/rootdir/meta_init.rc:root/meta_init.rc \
+    $(DEVICE_PATH)/rootdir/ueventd.mt6797.rc:root/ueventd.mt6797.rc
 
 # TWRP
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/recovery/etc/twrp.fstab:recovery/root/etc/twrp.fstab
-
-# Device product elements
-#include $(LOCAL_PATH)/product/*.mk
+#PRODUCT_COPY_FILES += \
+#    $(DEVICE_PATH)/recovery/etc/twrp.fstab:recovery/root/etc/twrp.fstab
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -64,6 +60,8 @@ PRODUCT_COPY_FILES += \
     frameworks/av/services/audiopolicy/config/default_volume_tables.xml:/system/etc/default_volume_tables.xml \
     frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:/system/etc/r_submix_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:/system/etc/usb_audio_policy_configuration.xml
+	
+	
 
 # Codecs
 PRODUCT_COPY_FILES += \
@@ -73,11 +71,11 @@ PRODUCT_COPY_FILES += \
 
 # Camera
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/camera/camerasize.xml:system/etc/camerasize.xml \
+    $(DEVICE_PATH)/camera/camerasize.xml:system/etc/camerasize.xml \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
     frameworks/native/data/etc/android.hardware.camera.raw.xml:system/etc/permissions/android.hardware.camera.raw.xml \
-    $(LOCAL_PATH)/configs/permissions/android.hardware.camera.xml:system/etc/permissions/android.hardware.camera.xml
+    $(DEVICE_PATH)/configs/permissions/android.hardware.camera.xml:system/etc/permissions/android.hardware.camera.xml
 
 # Snap
 PRODUCT_PACKAGES += \
@@ -128,7 +126,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/agps_profiles_conf2.xml:system/etc/agps_profiles_conf2.xml
+    $(DEVICE_PATH)/configs/agps_profiles_conf2.xml:system/etc/agps_profiles_conf2.xml
 
 # Hardware-specific permissions
 PRODUCT_COPY_FILES += \
@@ -179,13 +177,6 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.service.acm.enable=0 \
     persist.sys.dun.override=0 
 
-# RIL
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.kernel.android.checkjni=0 \
-    ro.telephony.ril_class=MediaTekRIL \
-    ro.telephony.ril.config=fakeiccid \
-    ro.com.android.mobiledata=false
-
 # Sensors
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
@@ -202,8 +193,8 @@ PRODUCT_PACKAGES += \
 
 # Configurations
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/ecc_list.xml:system/etc/ecc_list.xml \
-    $(LOCAL_PATH)/configs/spn-conf.xml:system/etc/spn-conf.xml
+    $(DEVICE_PATH)/configs/ecc_list.xml:system/etc/ecc_list.xml \
+    $(DEVICE_PATH)/configs/spn-conf.xml:system/etc/spn-conf.xml
 
 PRODUCT_PACKAGES += \
     messaging \
@@ -220,13 +211,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Thermal
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/thermal/.ht120.mtc:system/etc/.tp/.ht120.mtc \
-    $(LOCAL_PATH)/configs/thermal/thermal.conf:system/etc/.tp/thermal.conf \
-    $(LOCAL_PATH)/configs/thermal/thermal.off.conf:system/etc/.tp/thermal.off.conf \
-    $(LOCAL_PATH)/configs/thermal/.thermal_policy_00:system/etc/.tp/.thermal_policy_00 \
-    $(LOCAL_PATH)/configs/thermal/.thermal_policy_00:system/etc/.tp/.thermal_policy_01 \
-    $(LOCAL_PATH)/configs/thermal/.thermal_policy_00:system/etc/.tp/.thermal_policy_02 \
-    $(LOCAL_PATH)/configs/thermal/.thermal_policy_00:system/etc/.tp/.thermal_policy_03
+    $(DEVICE_PATH)/configs/thermal/.ht120.mtc:system/etc/.tp/.ht120.mtc \
+    $(DEVICE_PATH)/configs/thermal/thermal.conf:system/etc/.tp/thermal.conf \
+    $(DEVICE_PATH)/configs/thermal/thermal.off.conf:system/etc/.tp/thermal.off.conf \
+    $(DEVICE_PATH)/configs/thermal/.thermal_policy_00:system/etc/.tp/.thermal_policy_00 \
+    $(DEVICE_PATH)/configs/thermal/.thermal_policy_00:system/etc/.tp/.thermal_policy_01 \
+    $(DEVICE_PATH)/configs/thermal/.thermal_policy_00:system/etc/.tp/.thermal_policy_02 \
+    $(DEVICE_PATH)/configs/thermal/.thermal_policy_00:system/etc/.tp/.thermal_policy_03
 
 # USB
 PRODUCT_PACKAGES += \
@@ -249,16 +240,13 @@ PRODUCT_PACKAGES += \
     wpa_supplicant
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-    $(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
-    $(LOCAL_PATH)/configs/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
+    $(DEVICE_PATH)/configs/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
+    $(DEVICE_PATH)/configs/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
+    $(DEVICE_PATH)/configs/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
 
 
-# Dalvik heap configurations
-$(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-4096-dalvik-heap.mk)
-
-# Call hwui memory config
-$(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-4096-hwui-memory.mk)
+# Dalvik/HWUI
+$(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
 # Vendor
 $(call inherit-product, vendor/vernee/apollo_lite/apollo_lite-vendor.mk)
