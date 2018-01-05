@@ -20,7 +20,13 @@ include $(CLEAR_VARS)
 LOCAL_CFLAGS += $(LIBLOG_CFLAGS)
 LOCAL_MODULE := libxlog
 LOCAL_SRC_FILES := xlog.c mtkaudio.cpp MediatekHacks.cpp
-LOCAL_C_INCLUDES += frameworks/av/media/mtp/ system/core/include/ frameworks/rs/server/ frameworks/av/include/ hardware/libhardware/include/
+LOCAL_C_INCLUDES := \
+  $(TOP)/frameworks/av/media/mtp \
+  $(TOP)/system/core/include \
+  $(TOP)/frameworks/rs/server \
+  $(TOP)/frameworks/av/include \
+  $(TOP)/hardware/libhardware/include
+
 LOCAL_SHARED_LIBRARIES := libcutils liblog libutils libbinder
 
 include $(BUILD_SHARED_LIBRARY)
