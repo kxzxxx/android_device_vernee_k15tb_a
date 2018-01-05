@@ -11,7 +11,6 @@ MALLOC_SVELTE := true
 # Screen density
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
-PRODUCT_AAPT_PREBUILT_DPI := xxhdpi xhdpi 280dpi hdpi tvdpi mdpi ldpi
 
 # Recovery allowed devices
 TARGET_OTA_ASSERT_DEVICE := lite,apollo_lite,k15tb_a
@@ -140,7 +139,7 @@ PRODUCT_PACKAGES += \
     libui_ext \
     libmtk_symbols \
     libxlog
-	
+
 # Charger
 PRODUCT_PACKAGES += \
     charger
@@ -150,7 +149,6 @@ PRODUCT_PACKAGES += \
     power.default \
     power.mt6797
 
-	
 # Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
@@ -175,8 +173,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     ro.oem_unlock_supported=1 \
     ro.mount.fs=EXT4 \
     persist.service.acm.enable=0 \
-    persist.sys.dun.override=0 \
-    camera.disable_zsl_mode=1
+    persist.sys.dun.override=0 
 
 # RIL
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -201,7 +198,6 @@ PRODUCT_PACKAGES += \
 
 # Configurations
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/apns-conf.xml:system/etc/apns-conf.xml \
     $(LOCAL_PATH)/configs/ecc_list.xml:system/etc/ecc_list.xml \
     $(LOCAL_PATH)/configs/spn-conf.xml:system/etc/spn-conf.xml
 
@@ -253,7 +249,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
     $(LOCAL_PATH)/configs/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
 
-	
+
 # Dalvik heap configurations
 $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-4096-dalvik-heap.mk)
 

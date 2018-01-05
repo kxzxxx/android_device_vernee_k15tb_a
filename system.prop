@@ -2,6 +2,9 @@
 # system.prop for Vernee Apollo Lite
 #
 
+# Camera
+camera.disable_zsl_mode=1
+
 # RIL
 rild.libpath=/system/lib64/mtk-ril.so
 rild.libargs=-d /dev/ttyC0
