@@ -249,4 +249,4 @@ PRODUCT_COPY_FILES += \
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
 # Vendor
-$(call inherit-product, vendor/vernee/apollo_lite/apollo_lite-vendor.mk)
+$(call inherit-product, vendor/vernee/k15tb_a/apollo_lite-vendor.mk)
