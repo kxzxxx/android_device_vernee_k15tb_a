@@ -80,11 +80,12 @@ PRODUCT_PACKAGES += \
     Snap
 
 # Dalvik
-PRODUCT_TAGS += dalvik.gc.type-precise
+# PRODUCT_TAGS += dalvik.gc.type-precise
 
 # Display
 PRODUCT_PACKAGES += \
-    libion
+    libion \
+    libion_mtk
 
 # Fingerprint
 PRODUCT_COPY_FILES += \
