@@ -174,8 +174,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     ro.oem_unlock_supported=1 \
     ro.mount.fs=EXT4 \
     persist.service.acm.enable=0 \
-    persist.sys.dun.override=0 \
-    camera.disable_zsl_mode=1
+    persist.sys.dun.override=0 
 
 # RIL
 PRODUCT_PROPERTY_OVERRIDES += \
