@@ -8,10 +8,9 @@ USE_MINIKIN := true
 # Configure jemalloc for low memory
 MALLOC_SVELTE := true
 
-# Screen density
+# Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
-PRODUCT_AAPT_PREBUILT_DPI := xxhdpi xhdpi 280dpi hdpi tvdpi mdpi ldpi
 
 # Recovery allowed devices
 TARGET_OTA_ASSERT_DEVICE := lite,apollo_lite,k15tb_a
