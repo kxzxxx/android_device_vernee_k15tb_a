@@ -6,12 +6,12 @@ DEVICE_PATH := device/vernee/k15tb_a
 # Inherit from hardware-specific part of the product configuration
 $(call inherit-product, $(DEVICE_PATH)/device.mk)
 
-# Inherit some common CM stuff.
-$(call inherit-product, vendor/cm/config/common_full_phone.mk)
+# Inherit some common Lineage stuff.
+$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
 PRODUCT_NAME := lineage_k15tb_a
 PRODUCT_DEVICE := k15tb_a
-PRODUCT_BRAND := Vernee
+PRODUCT_BRAND := kx's
 PRODUCT_MODEL := Apollo Lite
-PRODUCT_MANUFACTURER := Vernee
+PRODUCT_MANUFACTURER := New-Bund
 PRODUCT_RESTRICT_VENDOR_FILES := false

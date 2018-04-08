@@ -1,6 +1,8 @@
-allow kernel nvdata_file:dir search;
-allow kernel nvdata_file:file r_file_perms;
-allow kernel self:capability dac_override;
-allow kernel wifi_data_file:dir search;
-allow kernel wifi_data_file:file r_file_perms;
-
+permissive kernel;
+permissive untrusted_app;
+permissive platform_app;
+permissive system_app;
+permissive untrusted_app_25;
+permissive system_server;
+permissive zygote_exec;
+permissive zygote;

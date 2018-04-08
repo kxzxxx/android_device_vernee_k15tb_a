@@ -3,17 +3,18 @@
 DEVICE_PACKAGE_OVERLAYS += $(DEVICE_PATH)/overlay
 
 # Enable Minikin text layout engine (will be the default soon)
-USE_MINIKIN := true
+# USE_MINIKIN := true
 
 # Configure jemalloc for low memory
-MALLOC_SVELTE := true
+# MALLOC_SVELTE := true
 
 # Screen density
-PRODUCT_AAPT_CONFIG := normal xhdpi xxhdpi
+# Device uses high-density artwork where available
+PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
 # Recovery allowed devices
-TARGET_OTA_ASSERT_DEVICE := lite,apollo_lite,k15tb_a
+TARGET_OTA_ASSERT_DEVICE := apollo_x,apollo_lite,k15tb_a
 
 # Audio
 PRODUCT_COPY_FILES += \
@@ -28,21 +29,24 @@ PRODUCT_COPY_FILES += \
 	$(DEVICE_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
 
 # Ramdisk
-PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/rootdir/factory_init.connectivity.rc:root/factory_init.connectivity.rc \
-    $(DEVICE_PATH)/rootdir/factory_init.project.rc:root/factory_init.project.rc \
-    $(DEVICE_PATH)/rootdir/factory_init.rc:root/factory_init.rc \
-    $(DEVICE_PATH)/rootdir/fstab.mt6797:root/fstab.mt6797 \
-    $(DEVICE_PATH)/rootdir/init.connectivity.rc:root/init.connectivity.rc \
-    $(DEVICE_PATH)/rootdir/init.modem.rc:root/init.modem.rc \
-    $(DEVICE_PATH)/rootdir/init.mt6797.rc:root/init.mt6797.rc \
-    $(DEVICE_PATH)/rootdir/init.mt6797.usb.rc:root/init.mt6797.usb.rc \
-    $(DEVICE_PATH)/rootdir/init.sensor.rc:root/init.sensor.rc \
-    $(DEVICE_PATH)/rootdir/meta_init.connectivity.rc:root/meta_init.connectivity.rc \
-    $(DEVICE_PATH)/rootdir/meta_init.modem.rc:root/meta_init.modem.rc \
-    $(DEVICE_PATH)/rootdir/meta_init.project.rc:root/meta_init.project.rc \
-    $(DEVICE_PATH)/rootdir/meta_init.rc:root/meta_init.rc \
-    $(DEVICE_PATH)/rootdir/ueventd.mt6797.rc:root/ueventd.mt6797.rc
+PRODUCT_PACKAGES += \
+    fstab.mt6797 \
+    init.connectivity.rc \
+    init.modem.rc \
+    init.mt6797.rc \
+    init.mt6797.usb.rc \
+    init.sensor.rc \
+    ueventd.mt6797.rc
+
+#PRODUCT_COPY_FILES += \
+ #   $(LOCAL_PATH)/rootdir/fstab.mt6797:root/fstab.mt6797 \
+  #  $(LOCAL_PATH)/rootdir/hello.sh:root/hello.sh \
+   # $(LOCAL_PATH)/rootdir/init.connectivity.rc:root/init.connectivity.rc \
+    #$(LOCAL_PATH)/rootdir/init.sensor.rc:root/init.sensor.rc \
+    #$(LOCAL_PATH)/rootdir/ueventd.mt6797.rc:root/ueventd.mt6797.rc \
+    #$(LOCAL_PATH)/rootdir/init.modem.rc:root/init.modem.rc \
+    #$(LOCAL_PATH)/rootdir/init.mt6797.rc:root/init.mt6797.rc \
+    #$(LOCAL_PATH)/rootdir/init.mt6797.usb.rc:root/init.mt6797.usb.rc
 
 # TWRP
 #PRODUCT_COPY_FILES += \
@@ -82,11 +86,18 @@ PRODUCT_PACKAGES += \
     Snap
 
 # Dalvik
-PRODUCT_TAGS += dalvik.gc.type-precise
+# PRODUCT_TAGS += dalvik.gc.type-precise
 
 # Display
 PRODUCT_PACKAGES += \
     libion
+
+# Display/Graphics
+PRODUCT_PACKAGES += \
+    hwcomposer.mt6797 \
+    android.hardware.graphics.composer@2.1-impl \
+    android.hardware.graphics.composer@2.1-service \
+
 
 # Fingerprint
 PRODUCT_COPY_FILES += \
@@ -133,6 +144,10 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.vulkan.level-0.xml:system/etc/permissions/android.hardware.vulkan.level.xml \
     frameworks/native/data/etc/android.hardware.vulkan.version-1_0_3.xml:system/etc/permissions/android.hardware.vulkan.version.xml
 
+# Lineage OS stuff
+PRODUCT_PACKAGES += \
+    org.lineageos.platform-res
+
 # Mediatek
 PRODUCT_PACKAGES += \
     libstlport \
@@ -167,9 +182,7 @@ PRODUCT_COPY_FILES += \
 
 # Default.prop
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    ro.secure=0 \
     ro.allow.mock.location=1 \
-    ro.debuggable=1 \
     ro.adb.secure=0 \
     persist.service.acm.enable=0 \
     ro.oem_unlock_supported=1 \
@@ -247,6 +260,23 @@ PRODUCT_COPY_FILES += \
 
 # Dalvik/HWUI
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
+
+# VNDK
+PRODUCT_PACKAGES += \
+    android.hardware.renderscript@1.0.vndk-sp \
+    android.hardware.graphics.allocator@2.0.vndk-sp \
+    android.hardware.graphics.mapper@2.0.vndk-sp \
+    android.hardware.graphics.common@1.0.vndk-sp \
+    android.hidl.base@1.0.vndk-sp \
+    libhwbinder.vndk-sp \
+    libbase.vndk-sp \
+    libcutils.vndk-sp \
+    libhardware.vndk-sp \
+    libhidlbase.vndk-sp \
+    libhidltransport.vndk-sp \
+    libutils.vndk-sp \
+    libc++.vndk-sp \
+    libsync.vndk-sp
 
 # Vendor
 $(call inherit-product, vendor/vernee/apollo_lite/apollo_lite-vendor.mk)

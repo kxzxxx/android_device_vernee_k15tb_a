@@ -97,7 +97,6 @@ ro.mtk_bg_power_saving_ui=1
 
 
 # RIL
-ro.kernel.android.checkjni=0
 ro.telephony.ril_class=MediaTekRIL
 ro.telephony.ril.config=fakeiccid
 ro.com.android.mobiledata=false
